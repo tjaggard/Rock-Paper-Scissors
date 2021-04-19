@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Page Title</title>
+  <meta charset="UTF-8"/>
+</head>
+
+
+<body>
+
+  <script>
+    // Your JavaScript goes here!
+    console.log("Hello World");
+        
+    function computerPlay() {
+        
+        let choice = (Math.floor(Math.random() * 3) + 1);
+        let answer = "";
+        
+        if (choice === 1) {
+            answer = "rock";
+        }
+        if (choice === 2) {
+            answer = "paper";
+        }
+        if (choice === 3) {
+            answer = "scissors";
+        }
+
+        return answer;
+    }
+
+    //Player Selection Function
+    function playerChoice() {
+        //Code
+        let player_choice = prompt("Please enter a choice:");
+        //console.log("The user entered: " + player_choice);
+        let player_answer = player_choice.toLowerCase();
+        return player_answer;
+
+    }
+
+    //Game Loop Function
+    function gameLoop(playerSelection, computerSelection) {
+        
+        //Player vs Computer
+        let score = 0
+
+        //Rock vs Rock
+        if (playerSelection === "rock" && computerSelection === "rock") {
+            //Players draw
+            score = 0;
+        }
+
+        //Rock vs Paper
+        if (playerSelection === "rock" && computerSelection === "paper") {
+            //Player loses
+            score = -1;
+        }
+
+        //Rock vs Scissors
+        if (playerSelection === "rock" && computerSelection === "scissors") {
+            //Player wins
+            score = 1;
+        }
+
+        //Paper vs Rock
+        if (playerSelection === "paper" && computerSelection === "rock") {
+            //Player wins
+            score = 1;
+        }
+
+        //Paper vs Paper
+        if (playerSelection === "paper" && computerSelection === "paper") {
+            //Players draw
+            score = 0;
+        }
+
+        //Paper vs Scissors
+        if (playerSelection === "paper" && computerSelection === "scissors") {
+            //Player loses
+            score = -1;
+        }
+
+        //Scissors vs Rock
+        if (playerSelection === "scissors" && computerSelection === "rock") {
+            //Player loses
+            score = -1;
+        }
+
+        //Scissors vs Paper
+        if (playerSelection === "scissors" && computerSelection === "paper") {
+            //Player wins
+            score = 1;
+        }
+
+        //Scissors vs Scissors
+        if (playerSelection === "scissors" && computerSelection === "scissors") {
+            //Players draw
+            score = 0;
+        }
+
+        return score;
+    }
+
+    function game() {
+        
+        let player_score_counter = 0
+        let computer_score_counter = 0
+
+        //Main Loop
+
+        while (player_score_counter < 5 && computer_score_counter < 5) {
+
+            let computer_choice = computerPlay();
+            let player_choice = playerChoice();
+
+            let score = gameLoop(player_choice, computer_choice);
+
+            console.log("The Player chose: " + player_choice + "\n" + "The Computer chose: " + computer_choice)
+
+            if (score === 1) {
+                //Player won
+                player_score_counter += 1
+                console.log("The Player Won!")
+            
+            }
+            if (score === 0) {
+                //Player drew
+                console.log("Both Players Drew")
+
+            }
+            if (score === -1) {
+                //Player lost
+                computer_score_counter += 1
+                console.log("The Computer Won!")
+            }
+
+            console.log("Current scores: Player - " +player_score_counter+ " Computer - " + computer_score_counter);
+        }
+
+        if (player_score_counter === 5) {
+            console.log("GAME OVER - THE PLAYER WON")
+        }
+
+        if (computer_score_counter === 5) {
+            console.log("GAME OVER - THE COMPUTER WON")
+        }
+        
+    }
+
+    game();
+
+    
+
+  </script>
+    <p>Rock Paper Scissors</p>
+</body>
+
+</html>
